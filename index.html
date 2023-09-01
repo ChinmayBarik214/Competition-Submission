@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #message {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        #inputBox {
+            margin-top: 10px;
+        }
+        #guessButton {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Guessing Game</h1>
+    <p>Guess the number between 1 and 100:</p>
+    <input type="number" id="inputBox" min="1" max="100">
+    <button id="guessButton">Guess</button>
+    <p id="message"></p>
+
+    <script>
+        // Generate a random number between 1 and 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        // Get the DOM elements
+        const inputBox = document.getElementById("inputBox");
+        const guessButton = document.getElementById("guessButton");
+        const message = document.getElementById("message");
+
+        // Add click event listener to the guess button
+        guessButton.addEventListener("click", () => {
+            const userGuess = parseInt(inputBox.value);
+            attempts++;
+
+            if (userGuess === randomNumber) {
+                message.innerHTML = `Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts.`;
+                guessButton.disabled = true;
+            } else if (userGuess < randomNumber) {
+                message.innerHTML = "Try a higher number.";
+            } else {
+                message.innerHTML = "Try a lower number.";
+            }
+        });
+    </script>
+</body>
+</html>
